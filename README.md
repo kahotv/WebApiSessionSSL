@@ -14,7 +14,7 @@
 
 - 服务端：域名的pfx证书，或crt证书和私钥key。可以是自签发或者三方可信机构签发。
 - 签发用户证书：域名的ca证书。
-- openssl：用于启用单向或双向SSL。
+- netsh命令：用于启用单向或双向SSL。
 - Session功能：用于校验登陆者和证书是否匹配，此功能在[WebApiSession项目](https://github.com/kahotv/WebApiSession)实现。
 
 ## 实现方式
@@ -173,6 +173,20 @@ openssl pkcs12 -export -inkey E:\_.xxx.com.key -in E:\_.xxx.com.crt -out E:\_.xx
 ​	执行时会让你输入两次密码，这个密码是导入pfx需要用的。
 
 ​	双击pfx，导入到`个人`目录，其他选项全部默认。
+
+### netsh
+
+- 查看SSL绑定
+
+```bash
+netsh http show sslcert
+```
+
+- 删除SSL绑定
+
+```bash
+netsh http delete sslcert ipport=0.0.0.0:9000
+```
 
 ### 一些坑
 
